@@ -5,6 +5,7 @@ type: software
 authors:
   - name: Amyashi
 version: "1.0.0"
+date-released: 2026-07-29
 repository-code: "https://github.com/Amyashi/amys-security-baseline-controls"
 url: "https://github.com/Amyashi/amys-security-baseline-controls"
 abstract: >-

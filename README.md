@@ -2,7 +2,7 @@
 
 Amy's Security Baseline Controls is a general, evidence-driven Windows 11 security baseline for individual PC owners. It explains what to verify, what can differ between Windows 11 Home and Pro, which changes carry compatibility risk, and when to stop or roll back.
 
-This repository is preparing a public v1.0.0 release candidate. The materials are informational and do not certify a device, guarantee protection, replace incident response, or substitute for current vendor guidance or qualified professional advice.
+Version 1.0.0 is the initial public release. The materials are informational and do not certify a device, guarantee protection, replace incident response, or substitute for current vendor guidance or qualified professional advice.
 
 ## Choose your Windows edition
 

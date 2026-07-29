@@ -2,7 +2,11 @@
 
 Material changes to the guide, workbook, accessible companion, control mapping, build process, and release policy are recorded here.
 
-## Unreleased
+## [Unreleased]
+
+No unreleased changes.
+
+## [1.0.0] - 2026-07-29
 
 ### Added
 
@@ -35,4 +39,7 @@ Material changes to the guide, workbook, accessible companion, control mapping, 
 
 ## Release convention
 
-Published releases use semantic version tags such as `v1.0.0`. A date is added to this file and `CITATION.cff` only when the corresponding release is published.
+Published releases use semantic version tags such as `v1.0.0`. Release dates in this file and `CITATION.cff` reflect the date the corresponding release is published.
+
+[Unreleased]: https://github.com/Amyashi/amys-security-baseline-controls/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/Amyashi/amys-security-baseline-controls/releases/tag/v1.0.0
