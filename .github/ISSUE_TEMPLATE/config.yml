@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/Amyashi/amys-security-baseline-controls/security/advisories/new
+    about: Privately report a vulnerability in the repository, automation, or generated artifacts.

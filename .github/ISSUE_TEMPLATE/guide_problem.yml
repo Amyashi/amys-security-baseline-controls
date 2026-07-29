@@ -1,0 +1,63 @@
+name: Guide problem
+description: Report a factual, safety, citation, accessibility, layout, or link problem.
+title: "[Guide problem]: "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve the guide. Do not include credentials, recovery keys, logs, dumps, screenshots with identifiers, or other sensitive evidence.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Factual claim or citation
+        - Safety, rollback, or ambiguity
+        - Accessibility
+        - PDF layout or printing
+        - Broken or outdated link
+        - Workbook or control mapping
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Give the release tag or state that you used an unreleased revision.
+      placeholder: v1.0.0
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Identify the file, section, control, and page when applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Explain what is wrong or inaccessible and why it matters.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Suggested correction
+      description: Describe the expected wording, behavior, or accessible presentation.
+  - type: textarea
+    id: sources
+    attributes:
+      label: Primary sources
+      description: Link current authoritative sources and state when you checked them.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy confirmation
+      options:
+        - label: I removed credentials, recovery data, account data, device identifiers, network identifiers, and other sensitive evidence.
+          required: true

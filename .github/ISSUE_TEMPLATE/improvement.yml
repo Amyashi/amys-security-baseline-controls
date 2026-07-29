@@ -1,0 +1,43 @@
+name: Improvement proposal
+description: Propose a new control, workflow, mapping, or usability improvement.
+title: "[Improvement]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Reader need
+      description: What problem would this change solve for a general reader?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the smallest useful change and where it belongs.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and primary sources
+      description: Link authoritative sources, identify affected versions or prerequisites, and state when each source was checked.
+    validations:
+      required: true
+  - type: textarea
+    id: tradeoffs
+    attributes:
+      label: Safety, compatibility, and accessibility
+      description: Identify possible regressions, edition limits, rollback needs, and accessibility effects.
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope confirmation
+      options:
+        - label: This proposal is general guidance and does not depend on an unredacted personal device configuration.
+          required: true
+        - label: I did not include sensitive evidence or personal information.
+          required: true

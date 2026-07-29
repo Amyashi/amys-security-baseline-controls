@@ -1,0 +1,53 @@
+# Python and build output
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+tmp/
+
+# Local editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.pfx
+*.p12
+
+# Evidence and diagnostics must never enter source control
+evidence/
+private/
+logs/
+dumps/
+screenshots/
+*.log
+*.dmp
+*.mdmp
+*.etl
+*.evtx
+*.reg
+*.cab
+*.zip
+*.7z
+*.tar
+*.gz
+*recovery*key*
+*bitlocker*key*
+
+# Temporary and backup files
+*.bak
+*.tmp
+*.swp
+*~

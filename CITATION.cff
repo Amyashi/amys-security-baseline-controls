@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you reference this project, please credit the author and identify the version used."
+title: "Amy's Security Baseline Controls"
+type: software
+authors:
+  - name: Amyashi
+version: "1.0.0"
+repository-code: "https://github.com/Amyashi/amys-security-baseline-controls"
+url: "https://github.com/Amyashi/amys-security-baseline-controls"
+abstract: >-
+  Edition-specific, evidence-driven Windows 11 Home and Pro security
+  implementation guides, printable assessment workbooks, and accessible
+  text companions for individual PC owners.
+keywords:
+  - security baseline
+  - Windows 11
+  - endpoint security
+  - security controls
+  - assessment workbook

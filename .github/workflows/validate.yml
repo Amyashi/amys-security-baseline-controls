@@ -1,0 +1,64 @@
+name: Validate public release
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-validate:
+    name: Build and validate release artifacts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install pinned dependencies
+        run: |
+          python -m pip install --disable-pip-version-check -r requirements.txt
+          python -m pip check
+
+      - name: Compile Python sources
+        run: python -m compileall -q src tests scripts
+
+      - name: Build edition guides and workbooks
+        run: python src/build_security_checklist.py
+
+      - name: Verify committed artifacts are current
+        run: >-
+          git diff --exit-code --
+          docs/Amys_Windows_11_Home_Security_Baseline_v1.0.0.pdf
+          docs/Amys_Windows_11_Home_Assessment_Workbook_v1.0.0.pdf
+          docs/Amys_Windows_11_Pro_Security_Baseline_v1.0.0.pdf
+          docs/Amys_Windows_11_Pro_Assessment_Workbook_v1.0.0.pdf
+          docs/WINDOWS_11_HOME_ACCESSIBLE_GUIDE.md
+          docs/WINDOWS_11_PRO_ACCESSIBLE_GUIDE.md
+          docs/SHA256SUMS.txt
+
+      - name: Run document-specific checks
+        run: python tests/qa_security_checklist.py
+
+      - name: Run public-release checks
+        run: python scripts/validate_public_release.py
+
+      - name: Check patch whitespace
+        run: git diff --check
