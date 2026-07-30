@@ -67,6 +67,9 @@ Product behavior, subscriptions, servicing state, and documentation change. Trea
 | `scripts/validate_public_release.py` | Repository-wide public-release validation |
 | `requirements.in` | Direct, intentionally selected build and validation dependencies |
 | `requirements.txt` | Fully resolved, version- and hash-locked dependency graph |
+| `.github/audit/requirements.in` | Direct dependency for the isolated vulnerability scanner |
+| `.github/audit/requirements.txt` | Fully resolved, version- and hash-locked scanner toolchain |
+| `.github/workflows/dependency-audit.yml` | Read-only dependency review and vulnerability-audit automation |
 
 ## Rebuild and validate
 
@@ -91,6 +94,14 @@ python tests\qa_security_checklist.py
 python scripts\validate_public_release.py
 ```
 
+Dependency auditing is intentionally isolated from the PDF build environment.
+The `Dependency audit` workflow installs pip-audit 2.10.1 from its separate
+hash-locked manifest and uses the PyPI vulnerability service to scan both the
+PDF dependency lock and the scanner's own lock. On pull requests, the same
+workflow also reviews dependency changes with GitHub's Dependency Review
+Action 5.0.0 and rejects known high-severity vulnerabilities. The scanner is
+never installed into the environment that builds the four release PDFs.
+
 Automated checks do not replace visual review. Before a release, render every page and confirm that:
 
 - no text, table, status marker, or link is clipped;
@@ -112,7 +123,7 @@ See [ACCESSIBILITY.md](ACCESSIBILITY.md) for the accessibility policy and [CONTR
 
 A public release must:
 
-1. pass the document-specific and repository-wide validators;
+1. pass the document-specific validators, repository-wide validator, and dependency audit;
 2. be rebuilt in the documented release environment from the declared dependency versions, with committed PDFs matching the generator;
 3. receive a complete visual and print review;
 4. contain no account, device, network, recovery, or diagnostic evidence;
