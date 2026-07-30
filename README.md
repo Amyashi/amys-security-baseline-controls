@@ -65,23 +65,27 @@ Product behavior, subscriptions, servicing state, and documentation change. Trea
 | `src/build_security_checklist.py` | Generated-document layout and build source |
 | `tests/qa_security_checklist.py` | Document-specific quality checks |
 | `scripts/validate_public_release.py` | Repository-wide public-release validation |
-| `requirements.txt` | Direct, version-pinned build and validation dependencies |
+| `requirements.in` | Direct, intentionally selected build and validation dependencies |
+| `requirements.txt` | Fully resolved, version- and hash-locked dependency graph |
 
 ## Rebuild and validate
 
-Use Python 3.12. Direct project dependencies are version-pinned in
-`requirements.txt`, but the Python patch version, installer, platform, and
-transitive dependency graph are not fully locked. Treat a rebuild as release
-validation in the documented environment, not as a promise of bit-for-bit
-reproduction across arbitrary environments. The generator is expected to use
-only fonts and assets whose redistribution terms are documented in
+Use Python 3.12.13. `requirements.in` records the direct project dependencies,
+and `requirements.txt` locks the complete transitive graph with approved
+distribution hashes. The supported install path accepts wheels only and fails
+if a downloaded artifact does not match the lock. The operating system,
+architecture, interpreter build, installer, and PDF-library behavior can still
+affect results outside the documented environment, so the protected GitHub
+Actions build remains the release gate. The generator is expected to use only
+fonts and assets whose redistribution terms are documented in
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ```powershell
+python --version  # Must report Python 3.12.13
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+python -m pip install --disable-pip-version-check --only-binary=:all: --require-hashes -r requirements.txt
+python -m pip check
 python src\build_security_checklist.py
 python tests\qa_security_checklist.py
 python scripts\validate_public_release.py

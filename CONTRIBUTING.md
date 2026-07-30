@@ -78,16 +78,29 @@ otherwise change the terms in [LICENSE.md](LICENSE.md).
 
 ## Local validation
 
-Use Python 3.12 and the documented dependency versions:
+Use Python 3.12.13 and the complete hash-locked dependency graph:
 
 ```powershell
+python --version  # Must report Python 3.12.13
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+python -m pip install --disable-pip-version-check --only-binary=:all: --require-hashes -r requirements.txt
+python -m pip check
 python src\build_security_checklist.py
 python tests\qa_security_checklist.py
 python scripts\validate_public_release.py
 ```
 
 Automated validation is necessary but not sufficient. Render and inspect every PDF page before marking a change ready for release.
+
+For an intentional dependency update, edit `requirements.in`, then regenerate
+the lock with pip-tools 7.6.0 under Python 3.12.13:
+
+```powershell
+python -m pip install pip-tools==7.6.0
+python -m piptools compile --generate-hashes --resolver=backtracking --strip-extras requirements.in
+```
+
+Review all resolved-version and hash changes before committing them. Dependency
+updates must pass the same document validation and visual-review gates as source
+changes.

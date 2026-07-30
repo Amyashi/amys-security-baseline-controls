@@ -1,0 +1,8 @@
+# Direct PDF build and release-validation dependencies.
+#
+# Regenerate requirements.txt with pip-tools 7.6.0 under Python 3.12.13:
+#   python -m piptools compile --generate-hashes --resolver=backtracking --strip-extras requirements.in
+pdfplumber==0.11.10
+pillow==12.3.0
+pypdf==6.14.2
+reportlab==5.0.0
