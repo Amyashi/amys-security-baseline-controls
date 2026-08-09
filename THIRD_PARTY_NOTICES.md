@@ -5,7 +5,7 @@ This project uses third-party software to build and validate its documents. Thos
 | Component | Version | Purpose | License |
 | --- | ---: | --- | --- |
 | [ReportLab](https://pypi.org/project/reportlab/) | 5.0.0 | PDF generation | BSD-style license |
-| [pypdf](https://pypi.org/project/pypdf/) | 6.14.2 | PDF structure and metadata validation | BSD-3-Clause |
+| [pypdf](https://pypi.org/project/pypdf/) | 6.15.0 | PDF structure and metadata validation | BSD-3-Clause |
 | [pdfplumber](https://pypi.org/project/pdfplumber/) | 0.11.10 | PDF text and geometry validation | MIT |
 | [Pillow](https://pypi.org/project/pillow/) | 12.3.0 | Image and font support used by the PDF toolchain | MIT-CMU |
 
