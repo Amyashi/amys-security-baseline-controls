@@ -4,5 +4,5 @@
 #   python -m piptools compile --generate-hashes --resolver=backtracking --strip-extras requirements.in
 pdfplumber==0.11.10
 pillow==12.3.0
-pypdf==6.15.0
+pypdf==6.19.0
 reportlab==5.0.0
